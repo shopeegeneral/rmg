@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RMG Tools</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div id="loadingIndicator" style="display: none;">
+        <i class="fas fa-spinner fa-spin"></i> <!-- Font Awesome spinning icon -->
+    </div>
+    
+    
+    <!-- Login Frame -->
+    <div id="login-frame" class="container">
+        <div class="left-section">
+            <div class="image-container">
+                <img src="material/log_in.png" alt="Illustration" />
+            </div>
+        </div>
+        <div class="right-section">
+            <div class="login-form">
+                <div class="profile-pic">
+                    <img src="material/avatar.png" alt="User Icon" />
+                </div>
+                <h2>WELCOME</h2>
+                <form id="login-form">
+                    <div class="input-group">
+                        <!-- <label for="username">Username</label> -->
+                        <input type="text" id="username" placeholder="Username">
+                    </div>
+                    <div class="input-group">
+                        <!-- <label for="password">Password</label> -->
+                        <input type="password" id="password" placeholder="Password">
+                    </div>
+
+                    <button type="submit" class="login-btn">LOGIN</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="secondaryModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>Chọn vật tư</h3>
+            <div id="modalOptions"></div>
+        </div>
+    </div>
+
+    <div id="foundTableModal" style="display: none;" class="modal2">
+        <div class="modal-content2">
+            <span class="close-button" onclick="closeFoundTableModal()">×</span>
+            <h3>Thông tin tìm thấy</h3>
+            <table id="foundTable" border="1">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Location</th>
+                        <th>Quantity</th>
+                        <th>Expiry Date</th>
+                        <th>Inbound Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    
+
+    <!-- Main Dashboard Frame -->
+    <div id="welcome-frame" class="dashboard" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul>
+                <h2 id="welcome-message">Welcome, Admin!</h2>
+                <li onclick="showFrame('home')">Home</li>
+                <li>
+                    Inventory Management
+                    <ul class="submenu">
+                        <li onclick="showFrame('import')">Nhập</li>
+                        <li onclick="showFrame('export')">Xuất</li>
+                        <li onclick="showFrame('mml')">MML</li>
+                    </ul>
+                </li>
+                <li>
+                    OPS Management
+                    <ul class="submenu">
+                        <li onclick="showFrame('crm')">CRM</li>
+                        <li onclick="showFrame('survey')">KHẢO SÁT</li>
+                        <li onclick="showFrame('design')">DESIGN + BOM</li>
+                        <li onclick="showFrame('quotation')">QUOTATION</li>
+                        <li onclick="showFrame('order_release')">ORDER RELEASE</li>
+                        <li onclick="showFrame('final_inspection')">FINAL INSPECTION</li>
+                        <li onclick="showFrame('delivery')">DELIVERY</li>
+                        <li onclick="showFrame('payment')">PAYMENT</li>
+                    </ul>
+                </li>
+                <li onclick="showFrame('bom_creation')">BOM Creation</li>
+                <li onclick="showFrame('export_data')">Export Data</li>
+                <li><button id="logout-btn" class="logout-btn">LOGOUT</button></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            <!-- Frames for each section -->
+            <div id="home" class="frame active">
+                <h2 id="welcome"></h2>
+            </div>
+                
+            <div id="import" class="frame">
+                <h1>Nhập vật tư</h1>
+                <div class="form-row">
+                    <label for="warehouse">Chọn chi nhánh</label>
+                    <select id="warehouse">
+                        <!-- Options sẽ được thêm qua JavaScript -->
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <label for="material-type">Loại vật tư</label>
+                    <div id="found">
+                        <input type="text" id="material-type" placeholder="Nhập loại vật tư">
+                        <div id="dropdown" class="dropdown"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label >Tên vật tư</label>
+                    <label id="sku_name_nhap"></label>
+                </div>
+
+                <div class="form-row">
+                    <label >Mã vật tư</label>
+                    <label id="sku_id_nhap"></label>
+                </div>
+                
+                <div class="form-row">
+                    <label for="supplier-code">Mã nhà cung cấp</label>
+                    <select id="supplier-code">
+                        <!-- Options sẽ được thêm qua JavaScript -->
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <label for="quantity">Nhập số lượng</label>
+                    <input type="number" id="quantity" placeholder="Nhập số lượng" oninput="validateInput(this)">
+                </div>
+                
+                <div class="form-row">
+                    <label for="unit-price">Nhập đơn giá</label>
+                    <input type="number" id="unit-price" placeholder="Nhập đơn giá" oninput="validateInput(this)"">
+                </div>
+                
+                <div class="form-row">
+                    <label for="expiry-date">Ngày hết hạn</label>
+                    <input type="date" id="expiry-date" placeholder="yyyy-mm-dd">
+                </div>
+                
+                <div class="form-row">
+                    <label for="storage-location">Vị trí lưu kho</label>
+                    <input type="text" id="storage-location" placeholder="Nhập vị trí lưu kho">
+                    <div id="error-message" style="color: red; display: none;">Vị trí không hợp lệ</div>
+                </div>
+
+                <div id="button_group_nhap">
+                    <button class="submit-btn" onclick="submit_nhap()">Submit</button>
+                    <button class="reset-btn" onclick="reset_nhap()">Reset</button>
+                </div>
+            </div>
+            
+            <div id="export" class="frame">
+                <h1>Xuất vật tư</h1>
+                <div class="form-row">
+                    <label for="warehouse_xuat">Chọn chi nhánh</label>
+                    <select id="warehouse_xuat">
+                        <!-- Options sẽ được thêm qua JavaScript -->
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="customer_name">Tên người nhận hàng</label>
+                    <input type="text" id="customer_name" placeholder="Nhập tên người nhận hàng">
+                </div>
+                
+                <div class="form-row">
+                    <label for="order_xuat">Xuất cho đơn hàng</label>
+                    <input type="text" id="order_xuat" placeholder="Nhập mã đơn hàng">
+                </div>
+
+                <div class="form-row">
+                    <label for="material-type_xuat">Loại vật tư</label>
+                    <div id="found_xuat">
+                        <input type="text" id="material-type_xuat" placeholder="Nhập loại vật tư">
+                        <div id="dropdown_xuat" class="dropdown"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label >Tên vật tư</label>
+                    <label id="sku_name_xuat"></label>
+                </div>
+
+                <div class="form-row">
+                    <label >Mã vật tư</label>
+                    <label id="sku_id_xuat"></label>
+                </div>
+
+                <div class="form-row">
+                    <label >Vị trí</label>
+                    <label id="loc_xuat"></label>
+                </div>
+
+                <div class="form-row">
+                    <label >Ngày hết hạn</label>
+                    <label id="exp_date_xuat"></label>
+                </div>
+
+                <div class="form-row">
+                    <label >Ngày nhập</label>
+                    <label id="ib_date_xuat"></label>
+                </div>
+
+                <div class="form-row">
+                    <label >Tồn hiện tại</label>
+                    <label id="cur_onhand"></label>
+                </div>
+
+                <div class="form-row">
+                    <label for="quantity_xuat">Nhập số lượng</label>
+                    <input type="number" id="quantity_xuat" placeholder="Nhập số lượng" oninput="validateInput(this)">
+                </div>
+
+
+                <div id="button_group_xuat">
+                    <button class="submit-btn" onclick="submit_xuat()">Submit</button>
+                    <button class="reset-btn" onclick="reset_xuat()">Reset</button>
+                </div>
+
+                <div id="tempLabel" style="display: none; background-color: red; color: white; padding: 5px;">Không có kết quả</div>
+            </div>
+            <div id="mml" class="frame">MML Inventory Content</div>
+            <div id="crm" class="frame">CRM OPS Management Content</div>
+            <div id="survey" class="frame">KHẢO SÁT OPS Management Content</div>
+            <div id="design" class="frame">DESIGN + BOM OPS Management Content</div>
+            <div id="quotation" class="frame">QUOTATION OPS Management Content</div>
+            <div id="order_release" class="frame">ORDER RELEASE OPS Management Content</div>
+            <div id="final_inspection" class="frame">FINAL INSPECTION OPS Management Content</div>
+            <div id="delivery" class="frame">DELIVERY OPS Management Content</div>
+            <div id="payment" class="frame">PAYMENT OPS Management Content</div>
+            <div id="bom_creation" class="frame">BOM Creation Content</div>
+            <div id="export_data" class="frame">Export Data Content</div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
