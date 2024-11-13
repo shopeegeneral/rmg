@@ -1,0 +1,602 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+input {
+    border-color: black;
+    border-width: 3px; /* Độ dày của viền */
+    border-style: solid; /* Kiểu viền là liền nét */
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 1000px;
+    height: 600px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.left-section {
+    width: 50%;
+    background: linear-gradient(135deg, #30e3ca, #11998e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.right-section {
+    width: 50%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.profile-pic img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    outline: none;
+    font-size: 20px;
+    border: 2px solid #3498db;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #11998e;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+/* Dashboard and Sidebar Styling */
+.dashboard {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: black;
+    color: #ecf0f1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    font-weight: bold;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    background-color: #34495e;
+}
+
+.sidebar ul .submenu {
+    padding-left: 20px;
+    display: none;
+}
+
+.sidebar ul li:hover > .submenu {
+    display: block;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: #ecf0f1;
+}
+
+.frame {
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.frame.active {
+    display: block;
+}
+
+.logout-btn {
+    background-color: #e74c3c;
+    border: none;
+    padding: 10px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.sidebar h2 {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    top: 0;
+    right: 0
+}
+ /* ######### import */
+/* Styling for Import Form */
+
+#import {
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Tăng chiều rộng của form */
+    margin: 0 auto;
+}
+
+#import .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Tăng khoảng cách giữa các dòng */
+}
+
+#import label {
+    font-size: 18px; /* Tăng kích thước font của label */
+    color: #333;
+    font-weight: bold;
+    width: 180px; /* Đặt kích thước rộng hơn cho label */
+}
+
+#import #sku_name_nhap,#sku_id_nhap {
+    width: 500px;
+    margin-left: 60px;
+}
+
+#import #sku_id_nhap {
+    width: 500px;
+    margin-left: 60px;
+}
+
+#import input[type="text"],
+#import input[type="number"],
+#import input[type="date"],
+#import select {
+    flex: 1;
+    padding: 15px; /* Tăng padding cho input */
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 18px; /* Tăng kích thước font của input */
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#import input[type="text"]:focus,
+#import input[type="number"]:focus,
+#import input[type="date"]:focus,
+#import select:focus {
+    border-color: #11998e;
+}
+
+#import select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #f9f9f9;
+}
+
+#import input[type="number"]::-webkit-inner-spin-button,
+#import input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#import .submit-btn {
+    width: 100%;
+    padding: 15px; /* Tăng padding cho button */
+    background-color: #11998e;
+    color: #ffffff;
+    font-size: 20px; /* Tăng kích thước font của button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+#import .reset-btn {
+    width: 100%;
+    padding: 15px; /* Tăng padding cho button */
+    background-color: red;
+    color: #ffffff;
+    font-size: 20px; /* Tăng kích thước font của button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+#button_group_nhap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Tăng khoảng cách giữa các dòng */
+    gap: 5px;
+}
+
+#import .submit-btn:hover {
+    background-color: #0b8263;
+}
+
+#import .reset-btn:hover {
+    background-color: #0b8263;
+}
+
+/* Dropdown style */
+
+#found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.dropdown {
+    /* position: absolute; */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-height: 250px;
+    overflow-y: auto;
+    width: 100%;
+    display: none; /* Ẩn dropdown khi không có kết quả */
+    z-index: 1000;
+}
+
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Modal style */
+.modal {
+    display: none; /* Ẩn modal khi chưa cần thiết */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Background mờ cho modal */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    font-size: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 900px;
+    max-height: 90vh; /* Giới hạn chiều cao của modal */
+    overflow-y: auto; /* Kích hoạt thanh cuộn dọc nếu nội dung vượt quá chiều cao */
+    text-align: left;
+    gap: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-option {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.modal-option:hover {
+    background-color: #f0f0f0;
+}
+
+#supplier-code {
+    width: 200px; /* Bạn có thể điều chỉnh kích thước này */
+    max-width: 100%; /* Giới hạn chiều rộng tối đa */
+    overflow: hidden; /* Giới hạn nội dung để không làm giãn rộng */
+  }
+
+
+  #loadingIndicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+    border-radius: 8px;
+    padding: 20px;
+    z-index: 1000;
+    color: #ffffff; /* White icon color */
+}
+
+#loadingIndicator i {
+    font-size: 3rem; /* Adjust icon size */
+}
+
+
+/* XUẤT*/
+
+#export {
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Tăng chiều rộng của form */
+    margin: 0 auto;
+}
+
+#export .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Tăng khoảng cách giữa các dòng */
+}
+
+#export label {
+    font-size: 18px; /* Tăng kích thước font của label */
+    color: #333;
+    font-weight: bold;
+    width: 180px; /* Đặt kích thước rộng hơn cho label */
+}
+
+#export #sku_name_xuat,#sku_id_xuat {
+    width: 500px;
+    margin-left: 60px;
+}
+
+#export #sku_id_xuat {
+    width: 500px;
+    margin-left: 60px;
+}
+
+#export #loc_xuat {
+    width: 500px;
+    margin-left: 60px;
+}
+
+#export #ib_date_xuat {
+    width: 500px;
+    margin-left: 60px;
+}
+
+#export #exp_date_xuat {
+    width: 500px;
+    margin-left: 60px;
+}
+
+#export input[type="text"],
+#export input[type="number"],
+#export input[type="date"],
+#export select {
+    flex: 1;
+    padding: 15px; /* Tăng padding cho input */
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 18px; /* Tăng kích thước font của input */
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#export input[type="text"]:focus,
+#export input[type="number"]:focus,
+#export input[type="date"]:focus,
+#export select:focus {
+    border-color: #11998e;
+}
+
+#export select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #f9f9f9;
+}
+
+#export input[type="number"]::-webkit-inner-spin-button,
+#export input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#export .submit-btn {
+    width: 100%;
+    padding: 15px; /* Tăng padding cho button */
+    background-color: #11998e;
+    color: #ffffff;
+    font-size: 20px; /* Tăng kích thước font của button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+#export .reset-btn {
+    width: 100%;
+    padding: 15px; /* Tăng padding cho button */
+    background-color: red;
+    color: #ffffff;
+    font-size: 20px; /* Tăng kích thước font của button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+/*Modal found xuất */
+.modal2 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    width: 1000px;
+}
+
+.modal-content2 {
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#foundTable {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#foundTable th, #foundTable td {
+    padding: 8px;
+    text-align: left;
+}
+
+/* Pickable table*/
+
+/* Style for the "Pick" button */
+button.pick-button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button.pick-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+button.pick-button:active {
+    background-color: #3e8e41; /* Even darker green when clicked */
+}
+
+/* Style for the "Không thể lấy" text */
+.status-text {
+    color: #d9534f; /* Red color */
+    font-weight: bold;
+}
+
+
+#export .submit-btn {
+    width: 100%;
+    padding: 15px; /* Tăng padding cho button */
+    background-color: #11998e;
+    color: #ffffff;
+    font-size: 20px; /* Tăng kích thước font của button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+#export .reset-btn {
+    width: 100%;
+    padding: 15px; /* Tăng padding cho button */
+    background-color: red;
+    color: #ffffff;
+    font-size: 20px; /* Tăng kích thước font của button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+#button_group_xuat {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Tăng khoảng cách giữa các dòng */
+    gap: 5px;
+}
+
+#export .submit-btn:hover {
+    background-color: #0b8263;
+}
+
+#export .reset-btn:hover {
+    background-color: #0b8263;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
